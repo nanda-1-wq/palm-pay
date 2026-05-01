@@ -65,6 +65,15 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-source-serif-4), serif;
+}
+
+.font-mono, pre, code {
+  font-family: var(--font-jetbrains-mono), monospace;
 }
 
 * {
@@ -137,20 +146,21 @@ body {
 /* Nav link underline animation — expands from center outward */
 .nav-link {
   position: relative;
+  display: inline-block;
 }
-.nav-link::after {
+header .nav-link::after {
   content: "";
   position: absolute;
   bottom: -3px;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  transform-origin: center;
+  left: 0;
   width: 100%;
   height: 2px;
   background: #4f8059;
   border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: center;
   transition: transform 0.2s ease;
 }
-.nav-link:hover::after {
-  transform: translateX(-50%) scaleX(1);
+header .nav-link:hover::after {
+  transform: scaleX(1);
 }

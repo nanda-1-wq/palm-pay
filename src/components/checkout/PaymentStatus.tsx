@@ -71,7 +71,7 @@ export default function PaymentStatus({
           </a>
         )}
         <button
-          onClick={() => window.history.back()}
+          onClick={() => { window.location.href = '/demo-store'; }}
           className="w-full bg-transparent hover:bg-white/[0.04] border border-white/[0.14] text-[#C8C8C8] hover:text-bone text-sm font-medium py-2.5 rounded-pill transition-colors"
         >
           Return to store

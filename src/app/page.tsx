@@ -57,7 +57,7 @@ const features = [
     icon: <FeatureShieldIcon />,
     title: "Zero Custodial Risk",
     description:
-      "Palm Pay never holds your funds. Direct peer-to-peer SPL transfers. You keep your keys.",
+      "PALM PAY never holds your funds. Direct peer-to-peer SPL transfers. You keep your keys.",
   },
   {
     icon: <FeatureQrIcon />,
@@ -103,7 +103,7 @@ export default function LandingPage() {
 
           <p className="text-lg sm:text-xl text-[#C8C8C8] max-w-2xl mb-10 leading-relaxed">
             Accept PUSD payments on Solana. No admin keys. No blacklist. No
-            pause. Palm Pay gives merchants the first checkout that guarantees
+            pause. PALM PAY gives merchants the first checkout that guarantees
             settlement finality.
           </p>
 
@@ -374,7 +374,7 @@ export default function LandingPage() {
                 height={22}
                 className="opacity-50"
               />
-              <span className="text-[#8A8A8A]">Palm Pay</span>
+              <span className="text-[#8A8A8A]">PALM PAY</span>
             </div>
             <span className="hidden sm:inline text-[#3A3A3A]">·</span>
             <span>Built for Palm USD × Superteam UAE Hackathon</span>

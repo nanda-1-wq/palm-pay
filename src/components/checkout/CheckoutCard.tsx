@@ -192,7 +192,7 @@ export default function CheckoutCard({ invoice }: CheckoutCardProps) {
         <div className="px-6 py-3 bg-white/[0.02] border-t border-white/[0.06] text-center">
           <p className="text-xs text-[#5A5A5A]">
             Powered by{" "}
-            <span className="text-[#8A8A8A] font-medium">Palm Pay</span>
+            <span className="text-[#8A8A8A] font-medium">PALM PAY</span>
             {" · "}
             <span>PUSD is a stable digital dollar on Solana</span>
           </p>

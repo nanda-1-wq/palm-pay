@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Palm Pay - Censorship-Resistant Checkout for PUSD",
+  title: "PALM PAY - Censorship-Resistant Checkout for PUSD",
   description:
     "Accept PUSD payments on Solana. No freeze. No blacklist. Instant settlement.",
   icons: {
@@ -42,6 +42,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${sourceSerif4.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-ink text-bone">
         <AppWalletProvider>
@@ -51,14 +52,19 @@ export default function RootLayout({
                 href="/"
                 className="flex items-center gap-2 font-semibold text-lg tracking-tight text-bone"
               >
-                <Image
-                  src="/palm-tree.svg"
-                  alt="Palm Pay logo"
-                  width={20}
-                  height={28}
-                  className="shrink-0"
-                />
-                <span>Palm Pay</span>
+                <span
+                  className="shrink-0 flex items-center justify-center"
+                  style={{ background: "#F5F0E8", width: 28, height: 28, padding: 3, borderRadius: 8 }}
+                >
+                  <Image
+                    src="/palm-tree.svg"
+                    alt="PALM PAY logo"
+                    width={18}
+                    height={24}
+                    style={{ background: "transparent" }}
+                  />
+                </span>
+                <span>PALM PAY</span>
               </Link>
               <nav className="flex items-center gap-5 text-sm">
                 <Link

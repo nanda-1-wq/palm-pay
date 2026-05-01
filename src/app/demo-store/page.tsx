@@ -230,7 +230,7 @@ function CheckoutModal({
             {/* Merchant row */}
             <div className="flex items-center justify-between bg-white/[0.03] border border-white/[0.05] rounded-xl px-3.5 py-2.5 text-sm">
               <span className="text-[#8A8A8A]">Merchant</span>
-              <span className="text-[#C8C8C8] font-medium">Palm Pay Demo Store</span>
+              <span className="text-[#C8C8C8] font-medium">PALM PAY Demo Store</span>
             </div>
 
             {/* Error */}
@@ -471,7 +471,7 @@ export default function DemoStorePage() {
             Live on Devnet
           </div>
           <h1 className="text-3xl sm:text-4xl font-semibold text-bone leading-tight">
-            Palm Pay Demo Store
+            PALM PAY Demo Store
           </h1>
           <p className="text-[#8A8A8A] mt-2 text-base max-w-lg">
             A live demo of PUSD checkout. Pick any item and pay with your Solana
@@ -516,7 +516,7 @@ export default function DemoStorePage() {
           <p className="text-center text-xs text-[#3A3A3A] mt-4">
             Powered by{" "}
             <Link href="/" className="text-[#5A5A5A] hover:text-[#8A8A8A] transition-colors">
-              Palm Pay
+              PALM PAY
             </Link>{" "}
             · Palm USD on Solana
           </p>
