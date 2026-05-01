@@ -6,9 +6,9 @@ import type { InvoiceJSON } from "@/types/invoice";
 
 const STATUS_STYLES: Record<string, string> = {
   pending: "bg-yellow-500/15 text-yellow-400 border-yellow-500/20",
-  paid: "bg-emerald-500/15 text-emerald-400 border-emerald-500/20",
+  paid: "bg-accent-bright/15 text-accent-bright border-accent-bright/20",
   expired: "bg-red-500/15 text-red-400 border-red-500/20",
-  cancelled: "bg-gray-500/15 text-gray-400 border-gray-500/20",
+  cancelled: "bg-white/[0.06] text-[#8A8A8A] border-white/[0.10]",
 };
 
 function StatusBadge({ status }: { status: string }) {
@@ -65,14 +65,14 @@ export default function TransactionHistory() {
       {/* Header row */}
       <div className="flex items-center justify-between gap-4">
         <div>
-          <h2 className="text-lg font-semibold">Transactions</h2>
+          <h2 className="text-lg font-semibold text-bone">Transactions</h2>
           {invoices.length > 0 && (
-            <p className="text-sm text-gray-400 mt-0.5">
+            <p className="text-sm text-[#8A8A8A] mt-0.5">
               {invoices.length} invoice{invoices.length !== 1 ? "s" : ""}
               {totalVolume > 0 && (
                 <>
                   {" · "}
-                  <span className="text-emerald-400 font-medium">
+                  <span className="text-gold font-mono font-medium">
                     {totalVolume.toFixed(2)} PUSD
                   </span>{" "}
                   total paid
@@ -84,7 +84,7 @@ export default function TransactionHistory() {
         <button
           onClick={fetchInvoices}
           disabled={loading}
-          className="flex items-center gap-1.5 text-sm bg-gray-800 hover:bg-gray-700 disabled:opacity-50 border border-gray-700 text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors shrink-0"
+          className="flex items-center gap-1.5 text-sm bg-transparent hover:bg-white/[0.04] disabled:opacity-50 border border-white/[0.14] text-[#C8C8C8] hover:text-bone px-3 py-2 rounded-pill transition-colors shrink-0"
         >
           <svg
             className={`w-4 h-4 ${loading ? "animate-spin" : ""}`}
@@ -110,9 +110,9 @@ export default function TransactionHistory() {
       )}
 
       {/* Table */}
-      <div className="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+      <div className="bg-ink-2 rounded-xl border border-white/[0.06] overflow-hidden">
         {loading && invoices.length === 0 ? (
-          <div className="flex items-center justify-center py-16 text-gray-500">
+          <div className="flex items-center justify-center py-16 text-[#5A5A5A]">
             <svg
               className="w-5 h-5 animate-spin mr-2"
               fill="none"
@@ -129,7 +129,7 @@ export default function TransactionHistory() {
             Loading…
           </div>
         ) : invoices.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-gray-500">
+          <div className="flex flex-col items-center justify-center py-16 text-[#5A5A5A]">
             <svg
               className="w-10 h-10 mb-3 opacity-40"
               fill="none"
@@ -154,7 +154,7 @@ export default function TransactionHistory() {
             <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-800 text-gray-500 text-xs uppercase tracking-wider">
+                  <tr className="border-b border-white/[0.06] text-[#8A8A8A] text-xs uppercase tracking-wider font-mono">
                     <th className="text-left px-5 py-3 font-medium">Date</th>
                     <th className="text-left px-5 py-3 font-medium">
                       Description
@@ -170,13 +170,13 @@ export default function TransactionHistory() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-800">
+                <tbody className="divide-y divide-white/[0.04]">
                   {invoices.map((inv) => (
                     <tr
                       key={inv.id}
-                      className="hover:bg-gray-800/40 transition-colors"
+                      className="hover:bg-white/[0.02] transition-colors"
                     >
-                      <td className="px-5 py-3.5 text-gray-400 whitespace-nowrap">
+                      <td className="px-5 py-3.5 text-[#8A8A8A] whitespace-nowrap font-mono text-xs">
                         {new Date(inv.createdAt).toLocaleDateString(undefined, {
                           month: "short",
                           day: "numeric",
@@ -184,22 +184,22 @@ export default function TransactionHistory() {
                           minute: "2-digit",
                         })}
                       </td>
-                      <td className="px-5 py-3.5 text-white max-w-[200px] truncate">
+                      <td className="px-5 py-3.5 text-bone max-w-[200px] truncate">
                         {inv.description || (
-                          <span className="text-gray-500">—</span>
+                          <span className="text-[#5A5A5A]">—</span>
                         )}
                       </td>
-                      <td className="px-5 py-3.5 text-right font-medium tabular-nums">
+                      <td className="px-5 py-3.5 text-right font-mono tabular-nums">
                         <span
                           className={
                             inv.status === "paid"
-                              ? "text-emerald-400"
-                              : "text-white"
+                              ? "text-gold"
+                              : "text-bone"
                           }
                         >
                           {inv.amount.toFixed(2)}
                         </span>
-                        <span className="text-gray-600 ml-1 text-xs">
+                        <span className="text-[#5A5A5A] ml-1 text-xs">
                           PUSD
                         </span>
                       </td>
@@ -212,7 +212,7 @@ export default function TransactionHistory() {
                             href={`https://solscan.io/tx/${inv.txSignature}?cluster=devnet`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-emerald-400 hover:text-emerald-300 transition-colors"
+                            className="inline-flex items-center gap-1 text-xs text-accent-bright hover:text-gold transition-colors"
                           >
                             View
                             <svg
@@ -230,7 +230,7 @@ export default function TransactionHistory() {
                             </svg>
                           </a>
                         ) : (
-                          <span className="text-gray-700">—</span>
+                          <span className="text-[#3A3A3A]">—</span>
                         )}
                       </td>
                     </tr>
@@ -240,15 +240,15 @@ export default function TransactionHistory() {
             </div>
 
             {/* Mobile cards */}
-            <div className="md:hidden divide-y divide-gray-800">
+            <div className="md:hidden divide-y divide-white/[0.04]">
               {invoices.map((inv) => (
                 <div key={inv.id} className="px-4 py-4 space-y-2">
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
-                      <p className="text-white text-sm truncate">
+                      <p className="text-bone text-sm truncate">
                         {inv.description || "No description"}
                       </p>
-                      <p className="text-gray-500 text-xs mt-0.5">
+                      <p className="text-[#5A5A5A] text-xs mt-0.5 font-mono">
                         {new Date(inv.createdAt).toLocaleDateString(undefined, {
                           month: "short",
                           day: "numeric",
@@ -257,9 +257,9 @@ export default function TransactionHistory() {
                         })}
                       </p>
                     </div>
-                    <p className="text-white font-medium shrink-0 tabular-nums text-sm">
+                    <p className="text-bone font-mono shrink-0 tabular-nums text-sm">
                       {inv.amount.toFixed(2)}{" "}
-                      <span className="text-gray-500 font-normal text-xs">
+                      <span className="text-[#5A5A5A] font-normal text-xs">
                         PUSD
                       </span>
                     </p>
@@ -271,7 +271,7 @@ export default function TransactionHistory() {
                         href={`https://solscan.io/tx/${inv.txSignature}?cluster=devnet`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs text-emerald-400 hover:text-emerald-300 transition-colors"
+                        className="text-xs text-accent-bright hover:text-gold transition-colors"
                       >
                         View on Solscan →
                       </a>

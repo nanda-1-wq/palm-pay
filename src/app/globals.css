@@ -1,15 +1,65 @@
 @import "tailwindcss";
 
-:root {
-  --background: #030712;
-  --foreground: #f9fafb;
+/* ── Palm USD static brand tokens — emitted as CSS custom properties ── */
+@theme {
+  --color-ink: #000000;
+  --color-ink-2: #0A0A0A;
+  --color-ink-3: #1A1410;
+  --color-bone: #F5F0E8;
+  --color-bone-2: #EDE7DA;
+  --color-bone-3: #E0DAC8;
+  --color-accent: #3F6B4A;
+  --color-accent-bright: #4F8059;
+  --color-accent-dim: #28432F;
+  --color-gold: #B8945A;
+  --color-gold-soft: #D9B97A;
+
+  --radius-pill: 9999px;
+
+  --shadow-panel-xl: 0 40px 100px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  --shadow-glow-sm: 0 0 8px #4f8059;
+  --shadow-glow-md: 0 0 14px #4f8059;
+
+  --animate-pulse-dot: pulseDot 1.6s ease-out infinite;
+  --animate-fade-in-up: fadeInUp 0.7s ease-out both;
 }
 
+/* ── Font families reference Next.js font CSS vars (inline = no double var) ── */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-source-serif-4);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+:root {
+  --background: #000000;
+  --foreground: #f5f0e8;
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 body {
@@ -21,22 +71,40 @@ body {
   box-sizing: border-box;
 }
 
-/* ── Wallet adapter modal: dark theme overrides ─────────────────── */
+/* ── Hero radial glow overlays ─────────────────────────────────────── */
+@layer utilities {
+  .bg-hero-glow-green {
+    background-image: radial-gradient(
+      900px 900px at 78% 38%,
+      rgba(63, 107, 74, 0.16),
+      transparent 60%
+    );
+  }
+  .bg-hero-glow-gold {
+    background-image: radial-gradient(
+      700px 700px at 86% 62%,
+      rgba(184, 148, 90, 0.1),
+      transparent 60%
+    );
+  }
+}
+
+/* ── Wallet adapter modal: Palm USD dark theme ──────────────────────── */
 .wallet-adapter-modal-wrapper {
-  background-color: #111827 !important; /* gray-900 */
+  background-color: #0a0a0a !important;
 }
 
 .wallet-adapter-modal-title {
-  color: #f9fafb !important;
+  color: #f5f0e8 !important;
 }
 
 .wallet-adapter-button {
-  background-color: #1f2937 !important; /* gray-800 */
+  background-color: #1a1a1a !important;
   border-radius: 0.75rem !important;
 }
 
 .wallet-adapter-button:hover {
-  background-color: #374151 !important; /* gray-700 */
+  background-color: #242424 !important;
 }
 
 .wallet-adapter-modal-list li {
@@ -45,20 +113,21 @@ body {
 
 .wallet-adapter-button-trigger {
   background: transparent !important;
-  border: 1px solid rgb(55 65 81) !important;
-  border-radius: 0.5rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 9999px !important;
   font-size: 0.875rem !important;
   font-weight: 500 !important;
   height: 2.25rem !important;
   padding: 0 1rem !important;
-  color: white !important;
+  color: #c8c8c8 !important;
 }
 
 .wallet-adapter-button-trigger:not([disabled]):hover {
-  background: rgb(31 41 55) !important; /* gray-800 */
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #f5f0e8 !important;
 }
 
 .wallet-adapter-button-trigger:not([disabled]):focus-visible {
-  outline: 2px solid #10b981;
+  outline: 2px solid #4f8059;
   outline-offset: 2px;
 }

@@ -82,9 +82,9 @@ export default function DashboardPage() {
     return (
       <div className="flex flex-1 items-center justify-center px-4">
         <div className="text-center max-w-sm">
-          <div className="w-14 h-14 rounded-2xl bg-gray-900 border border-gray-800 flex items-center justify-center mx-auto mb-5">
+          <div className="w-14 h-14 rounded-2xl bg-ink-2 border border-white/[0.06] flex items-center justify-center mx-auto mb-5">
             <svg
-              className="w-7 h-7 text-gray-600"
+              className="w-7 h-7 text-[#5A5A5A]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -97,8 +97,10 @@ export default function DashboardPage() {
               />
             </svg>
           </div>
-          <h2 className="text-xl font-semibold mb-2">Connect Your Wallet</h2>
-          <p className="text-gray-400 text-sm leading-relaxed">
+          <h2 className="text-xl font-semibold mb-2 text-bone">
+            Connect Your Wallet
+          </h2>
+          <p className="text-[#8A8A8A] text-sm leading-relaxed">
             Connect your Solana wallet to access the merchant dashboard and
             create payment invoices.
           </p>
@@ -111,13 +113,13 @@ export default function DashboardPage() {
     <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row gap-6 flex-1">
       {/* Sidebar */}
       <aside className="w-full md:w-56 shrink-0">
-        <div className="bg-gray-900 rounded-xl border border-gray-800 p-2 md:sticky md:top-24">
+        <div className="bg-ink-2 rounded-xl border border-white/[0.06] p-2 md:sticky md:top-24">
           {/* Wallet badge */}
-          <div className="px-3 py-3 mb-2 border-b border-gray-800">
-            <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+          <div className="px-3 py-3 mb-2 border-b border-white/[0.06]">
+            <p className="text-xs text-[#8A8A8A] uppercase tracking-wider mb-1 font-mono">
               Wallet
             </p>
-            <p className="text-xs font-mono text-gray-300 truncate">
+            <p className="text-xs font-mono text-[#C8C8C8] truncate">
               {publicKey.toBase58().slice(0, 8)}…
               {publicKey.toBase58().slice(-6)}
             </p>
@@ -130,13 +132,13 @@ export default function DashboardPage() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm transition-colors text-left ${
                   activeTab === tab.id
-                    ? "bg-emerald-500/15 text-emerald-400 font-medium"
-                    : "text-gray-400 hover:text-white hover:bg-gray-800"
+                    ? "bg-accent/15 text-accent-bright font-medium"
+                    : "text-[#C8C8C8] hover:text-bone hover:bg-white/[0.04]"
                 }`}
               >
                 <span
                   className={
-                    activeTab === tab.id ? "text-emerald-400" : "text-gray-600"
+                    activeTab === tab.id ? "text-accent-bright" : "text-[#5A5A5A]"
                   }
                 >
                   {tab.icon}

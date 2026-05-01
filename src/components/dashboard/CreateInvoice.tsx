@@ -97,11 +97,11 @@ export default function CreateInvoice() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-gray-900 rounded-xl border border-gray-800 p-6">
-        <h2 className="text-lg font-semibold mb-5">Create Invoice</h2>
+      <div className="bg-ink-2 rounded-xl border border-white/[0.06] p-6">
+        <h2 className="text-lg font-semibold mb-5 text-bone">Create Invoice</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm text-gray-400 mb-1.5">
+            <label className="block text-sm text-[#C8C8C8] mb-1.5">
               Merchant Name
             </label>
             <input
@@ -109,14 +109,14 @@ export default function CreateInvoice() {
               value={merchantName}
               onChange={(e) => setMerchantName(e.target.value)}
               placeholder="Your business name"
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500/60 transition-colors"
+              className="w-full bg-ink border border-white/[0.10] rounded-lg px-3 py-2.5 text-sm text-bone placeholder-[#5A5A5A] focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/60 transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-gray-400 mb-1.5">
+            <label className="block text-sm text-[#C8C8C8] mb-1.5">
               Amount{" "}
-              <span className="text-gray-600 text-xs">(PUSD)</span>
+              <span className="text-[#5A5A5A] text-xs font-mono">(PUSD)</span>
             </label>
             <div className="relative">
               <input
@@ -127,16 +127,16 @@ export default function CreateInvoice() {
                 min="0.01"
                 step="0.01"
                 required
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500/60 transition-colors pr-16"
+                className="w-full bg-ink border border-white/[0.10] rounded-lg px-3 py-2.5 text-sm text-bone placeholder-[#5A5A5A] focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/60 transition-colors pr-16"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-500 font-medium">
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gold font-mono font-medium">
                 PUSD
               </span>
             </div>
           </div>
 
           <div>
-            <label className="block text-sm text-gray-400 mb-1.5">
+            <label className="block text-sm text-[#C8C8C8] mb-1.5">
               Description
             </label>
             <input
@@ -144,7 +144,7 @@ export default function CreateInvoice() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="What is this payment for?"
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500/60 transition-colors"
+              className="w-full bg-ink border border-white/[0.10] rounded-lg px-3 py-2.5 text-sm text-bone placeholder-[#5A5A5A] focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/60 transition-colors"
             />
           </div>
 
@@ -157,7 +157,7 @@ export default function CreateInvoice() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-emerald-500 hover:bg-emerald-400 disabled:bg-emerald-500/40 disabled:cursor-not-allowed text-white font-medium py-2.5 rounded-lg text-sm transition-colors"
+            className="w-full bg-accent hover:bg-accent-bright disabled:bg-accent/40 disabled:cursor-not-allowed text-bone font-medium py-2.5 rounded-pill text-sm transition-colors"
           >
             {loading ? "Creating…" : "Create Invoice"}
           </button>
@@ -165,10 +165,10 @@ export default function CreateInvoice() {
       </div>
 
       {createdInvoice && (
-        <div className="bg-gray-900 rounded-xl border border-emerald-500/30 p-6 space-y-5">
+        <div className="bg-ink-2 rounded-xl border border-accent/30 p-6 space-y-5">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
-            <h3 className="font-semibold text-emerald-400">Invoice Created</h3>
+            <span className="w-2 h-2 rounded-full bg-accent-bright shrink-0" />
+            <h3 className="font-semibold text-accent-bright">Invoice Created</h3>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-5">
@@ -182,41 +182,41 @@ export default function CreateInvoice() {
             {/* Details */}
             <div className="flex-1 space-y-3 min-w-0">
               <div>
-                <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+                <p className="text-xs text-[#8A8A8A] uppercase tracking-wider font-mono mb-1">
                   Payment Link
                 </p>
-                <p className="text-sm text-gray-300 break-all font-mono bg-gray-800 rounded px-2.5 py-2">
+                <p className="text-sm text-[#C8C8C8] break-all font-mono bg-ink border border-white/[0.06] rounded px-2.5 py-2">
                   {paymentUrl}
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div>
-                  <p className="text-xs text-gray-500 mb-0.5">Amount</p>
-                  <p className="text-white font-medium">
+                  <p className="text-xs text-[#8A8A8A] font-mono mb-0.5">Amount</p>
+                  <p className="text-gold font-mono font-medium">
                     {createdInvoice.amount} PUSD
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 mb-0.5">Status</p>
+                  <p className="text-xs text-[#8A8A8A] font-mono mb-0.5">Status</p>
                   <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-500/15 text-yellow-400 border border-yellow-500/20">
                     pending
                   </span>
                 </div>
                 <div className="col-span-2">
-                  <p className="text-xs text-gray-500 mb-0.5">Description</p>
-                  <p className="text-white">
+                  <p className="text-xs text-[#8A8A8A] font-mono mb-0.5">Description</p>
+                  <p className="text-bone">
                     {createdInvoice.description || "—"}
                   </p>
                 </div>
               </div>
               <button
                 onClick={copyLink}
-                className="flex items-center gap-1.5 text-sm bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors"
+                className="flex items-center gap-1.5 text-sm bg-transparent hover:bg-white/[0.04] border border-white/[0.14] text-[#C8C8C8] hover:text-bone px-3 py-2 rounded-pill transition-colors"
               >
                 {copied ? (
                   <>
                     <svg
-                      className="w-4 h-4 text-emerald-400"
+                      className="w-4 h-4 text-accent-bright"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -255,33 +255,33 @@ export default function CreateInvoice() {
       )}
 
       {sessionInvoices.length > 0 && (
-        <div className="bg-gray-900 rounded-xl border border-gray-800 p-6">
-          <h3 className="text-sm font-medium text-gray-400 mb-4">
+        <div className="bg-ink-2 rounded-xl border border-white/[0.06] p-6">
+          <h3 className="text-sm font-medium text-[#8A8A8A] font-mono uppercase tracking-wider mb-4">
             Created This Session
           </h3>
-          <ul className="divide-y divide-gray-800">
+          <ul className="divide-y divide-white/[0.04]">
             {sessionInvoices.map((inv) => (
               <li
                 key={inv.id}
                 className="flex items-center justify-between py-3 text-sm gap-3"
               >
                 <div className="min-w-0">
-                  <p className="text-white truncate">
+                  <p className="text-bone truncate">
                     {inv.description || "No description"}
                   </p>
-                  <p className="text-gray-500 text-xs mt-0.5">
+                  <p className="text-[#5A5A5A] text-xs mt-0.5">
                     {new Date(inv.createdAt).toLocaleTimeString()}
                   </p>
                 </div>
                 <div className="text-right shrink-0">
-                  <p className="text-emerald-400 font-medium">
+                  <p className="text-gold font-mono font-medium">
                     {inv.amount} PUSD
                   </p>
                   <a
                     href={`/pay/${inv.id}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
+                    className="text-xs text-[#8A8A8A] hover:text-[#C8C8C8] transition-colors"
                   >
                     view →
                   </a>

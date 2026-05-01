@@ -31,8 +31,8 @@ export default function PayPage({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-950 flex items-center justify-center">
-        <div className="flex items-center gap-3 text-gray-400">
+      <div className="min-h-screen bg-ink flex items-center justify-center">
+        <div className="flex items-center gap-3 text-[#8A8A8A]">
           <svg
             className="w-5 h-5 animate-spin"
             fill="none"
@@ -60,11 +60,11 @@ export default function PayPage({
 
   if (notFound || !invoice) {
     return (
-      <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-ink flex items-center justify-center p-4">
         <div className="text-center space-y-3">
-          <p className="text-6xl font-bold text-gray-700">404</p>
-          <p className="text-white font-medium">Invoice not found</p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-6xl font-bold text-[#3A3A3A]">404</p>
+          <p className="text-bone font-medium">Invoice not found</p>
+          <p className="text-[#8A8A8A] text-sm">
             This payment link is invalid or has been removed.
           </p>
         </div>
@@ -74,7 +74,7 @@ export default function PayPage({
 
   if (invoice.status === "expired") {
     return (
-      <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-ink flex items-center justify-center p-4">
         <div className="text-center space-y-3">
           <div className="w-16 h-16 rounded-full bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center mx-auto">
             <svg
@@ -91,8 +91,8 @@ export default function PayPage({
               />
             </svg>
           </div>
-          <p className="text-white font-medium">This invoice has expired</p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-bone font-medium">This invoice has expired</p>
+          <p className="text-[#8A8A8A] text-sm">
             Please ask the merchant for a new payment link.
           </p>
         </div>
@@ -104,11 +104,11 @@ export default function PayPage({
     const cluster =
       SOLANA_NETWORK === "mainnet-beta" ? "" : `?cluster=${SOLANA_NETWORK}`;
     return (
-      <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-ink flex items-center justify-center p-4">
         <div className="text-center space-y-4">
-          <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mx-auto">
+          <div className="w-16 h-16 rounded-full bg-accent-bright/20 border border-accent-bright/30 flex items-center justify-center mx-auto">
             <svg
-              className="w-8 h-8 text-emerald-400"
+              className="w-8 h-8 text-accent-bright"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -122,8 +122,8 @@ export default function PayPage({
             </svg>
           </div>
           <div>
-            <p className="text-white text-xl font-semibold">Payment received</p>
-            <p className="text-gray-400 text-sm mt-1">
+            <p className="text-bone text-xl font-semibold">Payment received</p>
+            <p className="text-[#C8C8C8] text-sm mt-1">
               {invoice.amount} PUSD to {invoice.merchantName}
             </p>
           </div>
@@ -132,7 +132,7 @@ export default function PayPage({
               href={`https://solscan.io/tx/${invoice.txSignature}${cluster}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm text-emerald-400 hover:text-emerald-300 transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm text-accent-bright hover:text-gold transition-colors"
             >
               View on Solscan
               <svg
@@ -156,7 +156,7 @@ export default function PayPage({
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-ink flex items-center justify-center p-4">
       <CheckoutCard invoice={invoice} />
     </div>
   );

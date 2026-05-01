@@ -76,13 +76,13 @@ export default function CheckoutCard({ invoice }: CheckoutCardProps) {
 
   return (
     <div className="w-full max-w-md">
-      <div className="bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden shadow-2xl">
+      <div className="bg-ink-2 rounded-2xl border border-white/[0.03] overflow-hidden shadow-panel-xl">
         {/* Header */}
-        <div className="bg-gray-800/50 px-6 py-4 border-b border-gray-800">
+        <div className="bg-white/[0.03] px-6 py-4 border-b border-white/[0.06]">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+            <div className="w-9 h-9 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
               <svg
-                className="w-5 h-5 text-emerald-400"
+                className="w-5 h-5 text-accent-bright"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -96,10 +96,10 @@ export default function CheckoutCard({ invoice }: CheckoutCardProps) {
               </svg>
             </div>
             <div>
-              <p className="text-xs text-gray-500 uppercase tracking-wider">
+              <p className="text-xs text-[#8A8A8A] uppercase tracking-wider font-mono">
                 Payment to
               </p>
-              <p className="text-white font-medium leading-tight">
+              <p className="text-bone font-medium leading-tight">
                 {invoice.merchantName}
               </p>
             </div>
@@ -107,18 +107,18 @@ export default function CheckoutCard({ invoice }: CheckoutCardProps) {
         </div>
 
         {/* Amount */}
-        <div className="px-6 py-8 text-center border-b border-gray-800">
-          <p className="text-5xl font-bold text-white tabular-nums">
+        <div className="px-6 py-8 text-center border-b border-white/[0.06]">
+          <p className="font-display text-5xl font-medium text-bone tabular-nums">
             {invoice.amount.toLocaleString("en-US", {
               minimumFractionDigits: 2,
               maximumFractionDigits: 6,
             })}
           </p>
-          <p className="text-emerald-400 font-semibold mt-1 tracking-wide">
+          <p className="text-accent-bright font-semibold mt-1 tracking-wide font-mono text-sm">
             PUSD
           </p>
           {invoice.description && (
-            <p className="text-gray-400 text-sm mt-3 max-w-xs mx-auto">
+            <p className="text-[#8A8A8A] text-sm mt-3 max-w-xs mx-auto">
               {invoice.description}
             </p>
           )}
@@ -146,7 +146,7 @@ export default function CheckoutCard({ invoice }: CheckoutCardProps) {
                       d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  <span className="text-yellow-500">
+                  <span className="text-yellow-500 font-mono">
                     Expires in {minutes}:{String(seconds).padStart(2, "0")}
                   </span>
                 </>
@@ -175,8 +175,8 @@ export default function CheckoutCard({ invoice }: CheckoutCardProps) {
 
           {/* QR code for mobile wallets */}
           {payStatus === "idle" && (
-            <div className="pt-4 border-t border-gray-800 space-y-3">
-              <p className="text-xs text-center text-gray-500">
+            <div className="pt-4 border-t border-white/[0.06] space-y-3">
+              <p className="text-xs text-center text-[#8A8A8A]">
                 Or scan with Solana Pay compatible wallet
               </p>
               <div className="flex justify-center">
@@ -189,10 +189,10 @@ export default function CheckoutCard({ invoice }: CheckoutCardProps) {
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-3 bg-gray-800/30 border-t border-gray-800 text-center">
-          <p className="text-xs text-gray-600">
+        <div className="px-6 py-3 bg-white/[0.02] border-t border-white/[0.06] text-center">
+          <p className="text-xs text-[#5A5A5A]">
             Powered by{" "}
-            <span className="text-gray-500 font-medium">Palm Pay</span>
+            <span className="text-[#8A8A8A] font-medium">Palm Pay</span>
             {" · "}
             <span>PUSD is a stable digital dollar on Solana</span>
           </p>

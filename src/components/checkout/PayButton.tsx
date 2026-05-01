@@ -142,7 +142,7 @@ export default function PayButton({
     return (
       <button
         onClick={() => setVisible(true)}
-        className="w-full bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white font-medium py-3 rounded-xl text-sm transition-colors"
+        className="w-full bg-transparent hover:bg-white/[0.04] border border-white/[0.14] text-[#C8C8C8] hover:text-bone font-medium py-3 rounded-pill text-sm transition-colors"
       >
         Connect Wallet to Pay
       </button>
@@ -155,7 +155,7 @@ export default function PayButton({
     <button
       onClick={handlePay}
       disabled={isProcessing || disabled}
-      className="w-full bg-emerald-500 hover:bg-emerald-400 disabled:bg-emerald-500/40 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl text-sm transition-colors flex items-center justify-center gap-2"
+      className="w-full bg-accent hover:bg-accent-bright disabled:bg-accent/40 disabled:cursor-not-allowed text-bone font-semibold py-3 rounded-pill text-sm transition-colors flex items-center justify-center gap-2"
     >
       {status === "signing" && (
         <>

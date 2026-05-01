@@ -26,9 +26,9 @@ export default function PaymentStatus({
   if (status === "success") {
     return (
       <div className="text-center space-y-4 py-2">
-        <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mx-auto">
+        <div className="w-14 h-14 rounded-full bg-accent-bright/20 border border-accent-bright/30 flex items-center justify-center mx-auto">
           <svg
-            className="w-7 h-7 text-emerald-400"
+            className="w-7 h-7 text-accent-bright"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -42,8 +42,8 @@ export default function PaymentStatus({
           </svg>
         </div>
         <div>
-          <p className="text-white font-semibold text-lg">Payment confirmed!</p>
-          <p className="text-gray-400 text-sm mt-1">
+          <p className="text-bone font-semibold text-lg">Payment confirmed!</p>
+          <p className="text-[#C8C8C8] text-sm mt-1">
             Your payment was sent successfully
           </p>
         </div>
@@ -52,7 +52,7 @@ export default function PaymentStatus({
             href={solscanUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm text-emerald-400 hover:text-emerald-300 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm text-accent-bright hover:text-gold transition-colors"
           >
             View on Solscan
             <svg
@@ -72,7 +72,7 @@ export default function PaymentStatus({
         )}
         <button
           onClick={() => window.history.back()}
-          className="w-full bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white text-sm font-medium py-2.5 rounded-xl transition-colors"
+          className="w-full bg-transparent hover:bg-white/[0.04] border border-white/[0.14] text-[#C8C8C8] hover:text-bone text-sm font-medium py-2.5 rounded-pill transition-colors"
         >
           Return to store
         </button>
@@ -99,14 +99,14 @@ export default function PaymentStatus({
           </svg>
         </div>
         <div>
-          <p className="text-white font-semibold">Payment failed</p>
-          <p className="text-gray-400 text-sm mt-1 break-words">
+          <p className="text-bone font-semibold">Payment failed</p>
+          <p className="text-[#C8C8C8] text-sm mt-1 break-words">
             {error ?? "Something went wrong"}
           </p>
         </div>
         <button
           onClick={onRetry}
-          className="w-full bg-emerald-500 hover:bg-emerald-400 text-white text-sm font-medium py-2.5 rounded-xl transition-colors"
+          className="w-full bg-accent hover:bg-accent-bright text-bone text-sm font-medium py-2.5 rounded-pill transition-colors"
         >
           Try Again
         </button>

@@ -1,19 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Source_Serif_4, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import AppWalletProvider from "@/components/WalletProvider";
 import WalletButton from "@/components/WalletButton";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sourceSerif4 = Source_Serif_4({
+  variable: "--font-source-serif-4",
   subsets: ["latin"],
+  weight: ["400", "500"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -33,15 +41,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${sourceSerif4.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-gray-950 text-white">
+      <body className="min-h-full flex flex-col bg-ink text-bone">
         <AppWalletProvider>
-          <header className="border-b border-gray-800 bg-gray-950/80 backdrop-blur-sm sticky top-0 z-50">
+          <header className="border-b border-white/[0.06] bg-ink/80 backdrop-blur-sm sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
               <Link
                 href="/"
-                className="flex items-center gap-2 font-semibold text-lg tracking-tight"
+                className="flex items-center gap-2 font-semibold text-lg tracking-tight text-bone"
               >
                 <Image
                   src="/palm-tree.svg"
@@ -55,13 +63,13 @@ export default function RootLayout({
               <nav className="flex items-center gap-5 text-sm">
                 <Link
                   href="/dashboard"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-[#C8C8C8] hover:text-bone transition-colors"
                 >
                   Dashboard
                 </Link>
                 <Link
                   href="/demo-store"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-[#C8C8C8] hover:text-bone transition-colors"
                 >
                   Demo Store
                 </Link>

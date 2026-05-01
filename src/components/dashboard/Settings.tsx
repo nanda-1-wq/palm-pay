@@ -17,12 +17,12 @@ function CopyButton({ value, label }: { value: string; label?: string }) {
   return (
     <button
       onClick={copy}
-      className="flex items-center gap-1.5 text-xs bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-400 hover:text-white px-2.5 py-1.5 rounded-lg transition-colors shrink-0"
+      className="flex items-center gap-1.5 text-xs bg-ink hover:bg-white/[0.04] border border-white/[0.10] text-[#8A8A8A] hover:text-bone px-2.5 py-1.5 rounded-lg transition-colors shrink-0"
     >
       {copied ? (
         <>
           <svg
-            className="w-3.5 h-3.5 text-emerald-400"
+            className="w-3.5 h-3.5 text-accent-bright"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -70,14 +70,14 @@ function InfoRow({
   copyable?: boolean;
 }) {
   return (
-    <div className="flex items-start justify-between gap-4 py-4 border-b border-gray-800 last:border-0">
+    <div className="flex items-start justify-between gap-4 py-4 border-b border-white/[0.06] last:border-0">
       <div className="min-w-0">
-        <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+        <p className="text-xs text-[#8A8A8A] uppercase tracking-wider font-mono mb-1">
           {label}
         </p>
         <p
-          className={`text-sm text-white break-all ${
-            mono ? "font-mono" : "font-medium"
+          className={`text-sm text-bone break-all ${
+            mono ? "font-mono text-gold" : "font-medium"
           }`}
         >
           {value}
@@ -97,32 +97,32 @@ export default function Settings() {
 
   return (
     <div className="space-y-5">
-      <h2 className="text-lg font-semibold">Settings</h2>
+      <h2 className="text-lg font-semibold text-bone">Settings</h2>
 
       {/* Wallet card */}
-      <div className="bg-gray-900 rounded-xl border border-gray-800 px-6 py-2">
+      <div className="bg-ink-2 rounded-xl border border-white/[0.06] px-6 py-2">
         <InfoRow
           label="Connected Wallet"
           value={publicKey?.toBase58() ?? "—"}
           mono
           copyable={!!publicKey}
         />
-        <div className="flex items-start justify-between gap-4 py-4 border-b border-gray-800">
+        <div className="flex items-start justify-between gap-4 py-4 border-b border-white/[0.06]">
           <div className="min-w-0">
-            <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+            <p className="text-xs text-[#8A8A8A] uppercase tracking-wider font-mono mb-1">
               PUSD Balance
             </p>
-            <p className="text-sm font-medium text-white">
+            <p className="text-sm font-medium text-bone">
               {loading ? (
-                <span className="text-gray-500">Loading…</span>
+                <span className="text-[#5A5A5A]">Loading…</span>
               ) : balance === null ? (
-                <span className="text-gray-500">—</span>
+                <span className="text-[#5A5A5A]">—</span>
               ) : (
                 <>
-                  <span className="text-emerald-400 text-base">
+                  <span className="text-gold font-mono text-base">
                     {balance.toFixed(2)}
                   </span>{" "}
-                  <span className="text-gray-400">PUSD</span>
+                  <span className="text-[#8A8A8A] font-mono text-xs">PUSD</span>
                 </>
               )}
             </p>
@@ -130,7 +130,7 @@ export default function Settings() {
           <button
             onClick={refresh}
             disabled={loading}
-            className="flex items-center gap-1.5 text-xs bg-gray-800 hover:bg-gray-700 disabled:opacity-50 border border-gray-700 text-gray-400 hover:text-white px-2.5 py-1.5 rounded-lg transition-colors shrink-0"
+            className="flex items-center gap-1.5 text-xs bg-ink hover:bg-white/[0.04] disabled:opacity-50 border border-white/[0.10] text-[#8A8A8A] hover:text-bone px-2.5 py-1.5 rounded-lg transition-colors shrink-0"
           >
             <svg
               className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`}
@@ -164,10 +164,10 @@ export default function Settings() {
       <div className="flex items-center gap-2 text-sm">
         <span
           className={`w-2 h-2 rounded-full ${
-            network === "mainnet-beta" ? "bg-emerald-400" : "bg-yellow-400"
+            network === "mainnet-beta" ? "bg-accent-bright" : "bg-yellow-400"
           }`}
         />
-        <span className="text-gray-400">
+        <span className="text-[#8A8A8A]">
           {network === "mainnet-beta"
             ? "Connected to Solana Mainnet"
             : "Connected to Solana Devnet — for testing only"}
