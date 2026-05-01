@@ -316,9 +316,10 @@ Proxy for the Palm USD circulation API, cached 5 minutes server-side.
 
 ## Demo
 
-- **Live app:** [palm-pay.vercel.app](https://palm-pay.vercel.app) *(update after deploy)*
+- **Live app:** [palm-pay-weld.vercel.app](https://palm-pay-weld.vercel.app)
 - **Demo video:** [Loom link] *(update after recording)*
-- **Demo store:** `/demo-store` - browse products, pay with devnet PUSD
+- **Dashboard:** [palm-pay-weld.vercel.app/dashboard](https://palm-pay-weld.vercel.app/dashboard)
+- **Demo store:** [palm-pay-weld.vercel.app/demo-store](https://palm-pay-weld.vercel.app/demo-store)
 
 ---
 
@@ -337,6 +338,16 @@ Proxy for the Palm USD circulation API, cached 5 minutes server-side.
 ## Contributing
 
 PRs welcome. Run `npm run lint` and `npm run build` before opening a pull request.
+
+---
+
+## Team
+
+Built by Nanda ([@nanda-1-wq](https://github.com/nanda-1-wq))
+
+**Prior shipped projects:**
+- [Birdeye Token Radar](https://birdeye-token-radar.vercel.app) - Solana token intelligence dashboard (Birdeye Data BIP Competition)
+- PrivatePayroll - Confidential payroll system on Solana (Umber x Superteam Frontier Hackathon)
 
 ---
 
