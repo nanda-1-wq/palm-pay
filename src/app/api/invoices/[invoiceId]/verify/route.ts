@@ -58,7 +58,8 @@ export async function POST(
 
     return NextResponse.json(invoiceToJSON(updated!))
   } catch (err) {
-    console.error('POST /api/invoices/[invoiceId]/verify error:', err)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    const message = err instanceof Error ? err.message || err.name : String(err)
+    console.error('POST /api/invoices/[invoiceId]/verify error:', message, err)
+    return NextResponse.json({ error: `Internal server error: ${message}` }, { status: 500 })
   }
 }

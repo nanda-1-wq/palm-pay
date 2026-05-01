@@ -14,7 +14,6 @@ interface Product {
   name: string;
   description: string;
   price: number; // PUSD
-  emoji: string;
   accentFrom: string;
   accentTo: string;
   tag?: string;
@@ -26,7 +25,6 @@ const PRODUCTS: Product[] = [
     name: "Solana Hoodie",
     description: "Premium heavyweight hoodie, gradient logo on chest",
     price: 45,
-    emoji: "👕",
     accentFrom: "#9945FF",
     accentTo: "#14F195",
     tag: "Best Seller",
@@ -36,7 +34,6 @@ const PRODUCTS: Product[] = [
     name: "Crypto Coffee Mug",
     description: "Double-walled ceramic, keeps your alpha hot",
     price: 18,
-    emoji: "☕",
     accentFrom: "#F7931A",
     accentTo: "#FFD700",
   },
@@ -45,7 +42,6 @@ const PRODUCTS: Product[] = [
     name: "Dev Sticker Pack",
     description: "12 premium vinyl stickers - Solana, PUSD, web3 OSS",
     price: 8,
-    emoji: "🎨",
     accentFrom: "#00C2FF",
     accentTo: "#14F195",
     tag: "Sale",
@@ -55,7 +51,6 @@ const PRODUCTS: Product[] = [
     name: "Node Runner T-Shirt",
     description: "Softest organic cotton, running validator since 2021",
     price: 28,
-    emoji: "🖥️",
     accentFrom: "#14F195",
     accentTo: "#00C2FF",
   },
@@ -64,7 +59,6 @@ const PRODUCTS: Product[] = [
     name: "Hardware Wallet Sleeve",
     description: "Vegan leather case, fits Ledger Nano & Trezor",
     price: 22,
-    emoji: "🔐",
     accentFrom: "#FF6B6B",
     accentTo: "#FFD93D",
     tag: "New",
@@ -74,11 +68,116 @@ const PRODUCTS: Product[] = [
     name: "DAO Governance Cap",
     description: "Structured 6-panel cap, embroidered palm logo",
     price: 32,
-    emoji: "🧢",
     accentFrom: "#C778DD",
     accentTo: "#9945FF",
   },
 ];
+
+/* ─── Abstract product visuals (no emojis, no external images) ──── */
+
+function ProductVisual({ product, size = 80 }: { product: Product; size?: number }) {
+  const gid = `g-${product.id}`;
+  const { accentFrom, accentTo } = product;
+
+  const shapes: Record<string, React.ReactNode> = {
+    "solana-hoodie": (
+      // Two overlapping offset circles
+      <>
+        <circle cx="38" cy="44" r="22" fill={`url(#${gid})`} opacity="0.9" />
+        <circle cx="58" cy="36" r="18" fill={`url(#${gid})`} opacity="0.55" />
+      </>
+    ),
+    "crypto-mug": (
+      // Concentric rings + center dot
+      <>
+        <circle cx="48" cy="40" r="26" fill="none" stroke={`url(#${gid})`} strokeWidth="2" opacity="0.4" />
+        <circle cx="48" cy="40" r="18" fill="none" stroke={`url(#${gid})`} strokeWidth="2.5" opacity="0.65" />
+        <circle cx="48" cy="40" r="9" fill={`url(#${gid})`} opacity="0.9" />
+      </>
+    ),
+    "sticker-pack": (
+      // 3×3 grid of rounded squares
+      <>
+        {[0, 1, 2].flatMap((row) =>
+          [0, 1, 2].map((col) => (
+            <rect
+              key={`${row}-${col}`}
+              x={28 + col * 14}
+              y={22 + row * 14}
+              width="10"
+              height="10"
+              rx="2.5"
+              fill={`url(#${gid})`}
+              opacity={0.4 + (row + col) * 0.08}
+            />
+          ))
+        )}
+      </>
+    ),
+    "node-tshirt": (
+      // Three horizontal signal-wave lines
+      <>
+        {[0, 1, 2].map((i) => (
+          <path
+            key={i}
+            d={`M20 ${30 + i * 10} Q34 ${25 + i * 10} 48 ${30 + i * 10} Q62 ${35 + i * 10} 76 ${30 + i * 10}`}
+            fill="none"
+            stroke={`url(#${gid})`}
+            strokeWidth={2.5 - i * 0.5}
+            strokeLinecap="round"
+            opacity={0.9 - i * 0.2}
+          />
+        ))}
+      </>
+    ),
+    "ledger-sleeve": (
+      // Shield outline with inner accent
+      <>
+        <path
+          d="M48 16 L72 26 L72 46 C72 60 60 70 48 74 C36 70 24 60 24 46 L24 26 Z"
+          fill={`url(#${gid})`}
+          opacity="0.25"
+          stroke={`url(#${gid})`}
+          strokeWidth="1.5"
+        />
+        <path
+          d="M48 26 L62 33 L62 47 C62 56 55 62 48 65 C41 62 34 56 34 47 L34 33 Z"
+          fill={`url(#${gid})`}
+          opacity="0.55"
+        />
+      </>
+    ),
+    "dao-cap": (
+      // Regular hexagon
+      <>
+        <polygon
+          points="48,18 68,29 68,51 48,62 28,51 28,29"
+          fill={`url(#${gid})`}
+          opacity="0.3"
+          stroke={`url(#${gid})`}
+          strokeWidth="1.5"
+        />
+        <polygon
+          points="48,26 62,34 62,50 48,58 34,50 34,34"
+          fill={`url(#${gid})`}
+          opacity="0.6"
+        />
+      </>
+    ),
+  };
+
+  return (
+    <svg width={size} height={size} viewBox="0 0 96 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id={gid} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={accentFrom} />
+          <stop offset="100%" stopColor={accentTo} />
+        </linearGradient>
+      </defs>
+      {shapes[product.id]}
+    </svg>
+  );
+}
 
 /* ─── Checkout modal ────────────────────────────────────────────── */
 
@@ -148,13 +247,13 @@ function CheckoutModal({
         <div className="px-5 py-4 border-b border-white/[0.06] flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div
-              className="w-9 h-9 rounded-xl flex items-center justify-center text-xl shrink-0"
+              className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 overflow-hidden"
               style={{
                 background: `linear-gradient(135deg, ${product.accentFrom}22, ${product.accentTo}22)`,
                 border: `1px solid ${product.accentFrom}33`,
               }}
             >
-              {product.emoji}
+              <ProductVisual product={product} size={36} />
             </div>
             <div>
               <p className="text-xs text-[#8A8A8A] font-mono uppercase tracking-wider">
@@ -293,7 +392,9 @@ function ProductCard({ product, onBuy, loading }: ProductCardProps) {
             background: `radial-gradient(ellipse at center, ${product.accentFrom}22 0%, transparent 70%)`,
           }}
         />
-        <span className="text-6xl select-none relative z-10">{product.emoji}</span>
+        <div className="relative z-10">
+          <ProductVisual product={product} size={80} />
+        </div>
         {product.tag && (
           <span
             className="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
@@ -505,12 +606,43 @@ export default function DemoStorePage() {
         <div className="mt-14 pt-8 border-t border-white/[0.06]">
           <div className="flex flex-wrap gap-6 justify-center text-xs text-[#5A5A5A]">
             {[
-              "🔒 Non-custodial SPL transfers",
-              "⚡ Instant Solana settlement",
-              "🚫 PUSD can't be frozen",
-              "🔍 Every tx verifiable on-chain",
-            ].map((item) => (
-              <span key={item}>{item}</span>
+              {
+                label: "Non-custodial SPL transfers",
+                icon: (
+                  <svg className="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                ),
+              },
+              {
+                label: "Instant Solana settlement",
+                icon: (
+                  <svg className="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                  </svg>
+                ),
+              },
+              {
+                label: "PUSD can't be frozen",
+                icon: (
+                  <svg className="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                ),
+              },
+              {
+                label: "Every tx verifiable on-chain",
+                icon: (
+                  <svg className="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+                  </svg>
+                ),
+              },
+            ].map(({ label, icon }) => (
+              <span key={label} className="flex items-center gap-1.5">
+                {icon}
+                {label}
+              </span>
             ))}
           </div>
           <p className="text-center text-xs text-[#3A3A3A] mt-4">

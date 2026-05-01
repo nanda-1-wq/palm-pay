@@ -125,7 +125,8 @@ export async function verifyPUSDPayment(
     return { valid: false, error: 'Invalid merchant wallet address' }
   }
 
-  const merchantATA = getAssociatedTokenAddressSync(pusdMint, merchantPubkey)
+  // allowOwnerOffCurve: true — merchant wallet may be a PDA/multisig
+  const merchantATA = getAssociatedTokenAddressSync(pusdMint, merchantPubkey, true)
 
   // Gather all instructions (top-level + inner)
   const topLevel = tx.transaction.message.instructions

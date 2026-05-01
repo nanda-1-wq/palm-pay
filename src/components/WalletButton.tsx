@@ -31,7 +31,7 @@ export default function WalletButton() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return <WalletMultiButton />;
+  if (!mounted) return null;
 
   return (
     <div

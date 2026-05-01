@@ -48,17 +48,31 @@ export default function PayButton({
     onStatusChange("signing");
 
     try {
+      // ── Step 1: resolve addresses ──────────────────────────────────
       const mint = getPUSDMintPublicKey();
+      console.log("[PayButton] mint:", mint.toBase58());
+      console.log("[PayButton] payer:", publicKey.toBase58());
+      console.log("[PayButton] invoice:", {
+        id: invoice.id,
+        amount: invoice.amount,
+        amountLamports: invoice.amountLamports,
+        merchantWallet: invoice.merchantWallet,
+      });
+
       const merchantPubKey = new PublicKey(invoice.merchantWallet);
-
       const payerAta = await getAssociatedTokenAddress(mint, publicKey);
-      const merchantAta = await getAssociatedTokenAddress(mint, merchantPubKey);
+      // allowOwnerOffCurve: true — merchant wallet may be a PDA/multisig
+      const merchantAta = await getAssociatedTokenAddress(mint, merchantPubKey, true);
+      console.log("[PayButton] payerAta:", payerAta.toBase58());
+      console.log("[PayButton] merchantAta:", merchantAta.toBase58());
 
+      // ── Step 2: check ATAs ─────────────────────────────────────────
       const tx = new Transaction();
 
-      // Create payer ATA if missing (customer pays rent)
       const payerAtaInfo = await connection.getAccountInfo(payerAta);
+      console.log("[PayButton] payerAta exists:", !!payerAtaInfo, "lamports:", payerAtaInfo?.lamports);
       if (!payerAtaInfo) {
+        console.log("[PayButton] adding createATA instruction for payer");
         tx.add(
           createAssociatedTokenAccountInstruction(
             publicKey,
@@ -69,9 +83,10 @@ export default function PayButton({
         );
       }
 
-      // Create merchant ATA if missing (customer pays rent)
       const merchantAtaInfo = await connection.getAccountInfo(merchantAta);
+      console.log("[PayButton] merchantAta exists:", !!merchantAtaInfo);
       if (!merchantAtaInfo) {
+        console.log("[PayButton] adding createATA instruction for merchant");
         tx.add(
           createAssociatedTokenAccountInstruction(
             publicKey,
@@ -82,7 +97,7 @@ export default function PayButton({
         );
       }
 
-      // SPL transfer
+      // ── Step 3: build transaction ──────────────────────────────────
       tx.add(
         createTransferCheckedInstruction(
           payerAta,
@@ -94,7 +109,6 @@ export default function PayButton({
         )
       );
 
-      // Memo with invoice ID
       tx.add(
         new TransactionInstruction({
           keys: [{ pubkey: publicKey, isSigner: true, isWritable: false }],
@@ -107,8 +121,11 @@ export default function PayButton({
         await connection.getLatestBlockhash();
       tx.recentBlockhash = blockhash;
       tx.feePayer = publicKey;
+      console.log("[PayButton] transaction built, sending to wallet...");
 
+      // ── Step 4: send ───────────────────────────────────────────────
       const signature = await sendTransaction(tx, connection);
+      console.log("[PayButton] tx sent, signature:", signature);
 
       onStatusChange("confirming");
 
@@ -117,8 +134,9 @@ export default function PayButton({
         blockhash,
         lastValidBlockHeight,
       });
+      console.log("[PayButton] tx confirmed");
 
-      // Backend verification
+      // ── Step 5: backend verification ──────────────────────────────
       const verifyRes = await fetch(`/api/invoices/${invoice.id}/verify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -132,8 +150,13 @@ export default function PayButton({
 
       onSuccess(signature);
     } catch (err: unknown) {
-      const message =
-        err instanceof Error ? err.message : "Transaction failed";
+      console.error("[PayButton] PAYMENT FAILED:", err);
+      let message = "Transaction failed";
+      if (err instanceof Error) {
+        // Some SPL errors have empty .message but a useful .name
+        message = err.message || err.name || "Transaction failed";
+      }
+      console.error("[PayButton] error message:", message);
       onError(message);
     }
   };
