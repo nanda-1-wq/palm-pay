@@ -2,39 +2,77 @@ import Link from "next/link";
 import Image from "next/image";
 import ReservesBadge from "@/components/ReservesBadge";
 
+const FeatureLockIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent-bright">
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  </svg>
+);
+const FeatureLightningIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent-bright">
+    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+  </svg>
+);
+const FeatureShieldIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent-bright">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+  </svg>
+);
+const FeatureQrIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent-bright">
+    <rect x="3" y="3" width="7" height="7" rx="1" />
+    <rect x="14" y="3" width="7" height="7" rx="1" />
+    <rect x="3" y="14" width="7" height="7" rx="1" />
+    <path d="M14 14h3v3M17 17h3v3M20 14v.01" />
+  </svg>
+);
+const FeatureGlobeIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent-bright">
+    <circle cx="12" cy="12" r="10" />
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+  </svg>
+);
+const FeatureCheckIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent-bright">
+    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+    <polyline points="22 4 12 14.01 9 11.01" />
+  </svg>
+);
+
 const features = [
   {
-    icon: "🔒",
+    icon: <FeatureLockIcon />,
     title: "Non-Freezable",
     description:
       "PUSD has no admin freeze keys. Once sent, funds are yours. No issuer can freeze or seize your balance.",
   },
   {
-    icon: "⚡",
+    icon: <FeatureLightningIcon />,
     title: "Instant Settlement",
     description:
-      "Transactions confirm on Solana in under 400ms. Funds hit your wallet immediately — no holding periods.",
+      "Transactions confirm on Solana in under 400ms. Funds hit your wallet immediately - no holding periods.",
   },
   {
-    icon: "🛡️",
+    icon: <FeatureShieldIcon />,
     title: "Zero Custodial Risk",
     description:
       "Palm Pay never holds your funds. Direct peer-to-peer SPL transfers. You keep your keys.",
   },
   {
-    icon: "📱",
+    icon: <FeatureQrIcon />,
     title: "Solana Pay Compatible",
     description:
-      "Drop-in checkout widget with QR code support. Works with any Solana wallet — Phantom, Solflare, and more.",
+      "Drop-in checkout widget with QR code support. Works with any Solana wallet - Phantom, Solflare, and more.",
   },
   {
-    icon: "🌍",
+    icon: <FeatureGlobeIcon />,
     title: "Built for MENA",
     description:
       "PUSD is 1:1 backed by AED + SAR with monthly ISAE 3000 attestations. Designed for emerging markets.",
   },
   {
-    icon: "✅",
+    icon: <FeatureCheckIcon />,
     title: "No Blacklist",
     description:
       "Unlike USDC or USDT, PUSD has no address blacklist. Your merchant wallet can never be blocked.",
@@ -85,7 +123,7 @@ export default function LandingPage() {
           </div>
 
           <p className="text-sm text-[#5A5A5A] mt-6">
-            No sign-up needed &mdash; connect your Solana wallet to get started
+            No sign-up needed - connect your Solana wallet to get started
           </p>
         </div>
       </section>
@@ -93,7 +131,7 @@ export default function LandingPage() {
       {/* How It Works */}
       <section className="py-24 px-4 bg-ink">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-4 text-bone">
+          <h2 className="font-display text-2xl sm:text-3xl font-medium text-center mb-4 text-bone">
             How It Works
           </h2>
           <p className="text-[#C8C8C8] text-center mb-14 max-w-xl mx-auto">
@@ -137,7 +175,7 @@ export default function LandingPage() {
       {/* Feature Grid */}
       <section className="py-24 px-4 bg-ink-2">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-4 text-bone">
+          <h2 className="font-display text-2xl sm:text-3xl font-medium text-center mb-4 text-bone">
             Why PUSD Over USDC?
           </h2>
           <p className="text-[#C8C8C8] text-center mb-14 max-w-xl mx-auto">
@@ -150,7 +188,7 @@ export default function LandingPage() {
                 key={title}
                 className="bg-ink border border-white/[0.06] rounded-2xl p-6 hover:border-accent/30 transition-colors"
               >
-                <div className="text-2xl mb-3">{icon}</div>
+                <div className="mb-3">{icon}</div>
                 <h3 className="font-semibold mb-2 text-bone">{title}</h3>
                 <p className="text-[#8A8A8A] text-sm leading-relaxed">
                   {description}
@@ -180,7 +218,7 @@ export default function LandingPage() {
       {/* USDC vs PUSD comparison */}
       <section className="py-24 px-4 bg-ink">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-14 text-bone">
+          <h2 className="font-display text-2xl sm:text-3xl font-medium text-center mb-14 text-bone">
             The Difference Is Real
           </h2>
           <div className="bg-ink-2 border border-white/[0.06] rounded-2xl overflow-hidden">
@@ -235,7 +273,7 @@ export default function LandingPage() {
               </h2>
               <p className="text-[#8A8A8A] mb-6 leading-relaxed">
                 Create invoices and accept PUSD payments with a single API
-                call. No SDK required — just a POST request.
+                call. No SDK required - just a POST request.
               </p>
               <ul className="space-y-3 text-sm text-[#C8C8C8]">
                 {[

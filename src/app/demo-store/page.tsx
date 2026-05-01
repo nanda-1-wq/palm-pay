@@ -43,7 +43,7 @@ const PRODUCTS: Product[] = [
   {
     id: "sticker-pack",
     name: "Dev Sticker Pack",
-    description: "12 premium vinyl stickers — Solana, PUSD, web3 OSS",
+    description: "12 premium vinyl stickers - Solana, PUSD, web3 OSS",
     price: 8,
     emoji: "🎨",
     accentFrom: "#00C2FF",
@@ -415,7 +415,7 @@ export default function DemoStorePage() {
       <div className="bg-[#14F195]/10 border-b border-[#14F195]/20 px-4 py-2.5 text-center">
         <p className="text-xs text-[#14F195]/80">
           <span className="font-semibold text-[#14F195]">Demo mode</span>
-          {" — "}
+          {" - "}
           This store runs on Solana devnet. No real money is exchanged.{" "}
           <Link
             href="/dashboard"
@@ -475,7 +475,7 @@ export default function DemoStorePage() {
           </h1>
           <p className="text-[#8A8A8A] mt-2 text-base max-w-lg">
             A live demo of PUSD checkout. Pick any item and pay with your Solana
-            wallet — instant, non-custodial, non-freezable.
+            wallet - instant, non-custodial, non-freezable.
           </p>
         </div>
 

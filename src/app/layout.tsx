@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Palm Pay — Censorship-Resistant Checkout for PUSD",
+  title: "Palm Pay - Censorship-Resistant Checkout for PUSD",
   description:
     "Accept PUSD payments on Solana. No freeze. No blacklist. Instant settlement.",
   icons: {
@@ -63,13 +63,13 @@ export default function RootLayout({
               <nav className="flex items-center gap-5 text-sm">
                 <Link
                   href="/dashboard"
-                  className="text-[#C8C8C8] hover:text-bone transition-colors"
+                  className="nav-link text-[#C8C8C8] hover:text-bone transition-colors"
                 >
                   Dashboard
                 </Link>
                 <Link
                   href="/demo-store"
-                  className="text-[#C8C8C8] hover:text-bone transition-colors"
+                  className="nav-link text-[#C8C8C8] hover:text-bone transition-colors"
                 >
                   Demo Store
                 </Link>

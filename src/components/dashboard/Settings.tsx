@@ -171,7 +171,7 @@ export default function Settings() {
         <span className="text-[#8A8A8A]">
           {network === "mainnet-beta"
             ? "Connected to Solana Mainnet"
-            : "Connected to Solana Devnet — for testing only"}
+            : "Connected to Solana Devnet - for testing only"}
         </span>
       </div>
 

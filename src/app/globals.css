@@ -112,22 +112,45 @@ body {
 }
 
 .wallet-adapter-button-trigger {
-  background: transparent !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background: #f5f0e8 !important;
+  border: 1px solid #f5f0e8 !important;
   border-radius: 9999px !important;
   font-size: 0.875rem !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
   height: 2.25rem !important;
   padding: 0 1rem !important;
-  color: #c8c8c8 !important;
+  color: #000000 !important;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
 }
 
 .wallet-adapter-button-trigger:not([disabled]):hover {
-  background: rgba(255, 255, 255, 0.05) !important;
+  background: #4f8059 !important;
+  border-color: #4f8059 !important;
   color: #f5f0e8 !important;
 }
 
 .wallet-adapter-button-trigger:not([disabled]):focus-visible {
   outline: 2px solid #4f8059;
   outline-offset: 2px;
+}
+
+/* Nav link underline animation — expands from center outward */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: 2px;
+  background: #4f8059;
+  border-radius: 1px;
+  transition: transform 0.2s ease;
+}
+.nav-link:hover::after {
+  transform: translateX(-50%) scaleX(1);
 }
