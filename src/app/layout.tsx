@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Image from "next/image";
 import AppWalletProvider from "@/components/WalletProvider";
 import WalletButton from "@/components/WalletButton";
 
@@ -19,6 +20,9 @@ export const metadata: Metadata = {
   title: "Palm Pay — Censorship-Resistant Checkout for PUSD",
   description:
     "Accept PUSD payments on Solana. No freeze. No blacklist. Instant settlement.",
+  icons: {
+    icon: "/palm-tree.svg",
+  },
 };
 
 export default function RootLayout({
@@ -39,7 +43,13 @@ export default function RootLayout({
                 href="/"
                 className="flex items-center gap-2 font-semibold text-lg tracking-tight"
               >
-                <span className="text-emerald-400">◆</span>
+                <Image
+                  src="/palm-tree.svg"
+                  alt="Palm Pay logo"
+                  width={20}
+                  height={28}
+                  className="shrink-0"
+                />
                 <span>Palm Pay</span>
               </Link>
               <nav className="flex items-center gap-5 text-sm">
