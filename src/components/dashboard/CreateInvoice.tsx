@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { QRCodeSVG } from "qrcode.react";
 import type { InvoiceJSON } from "@/types/invoice";
@@ -14,7 +14,9 @@ interface CreatedInvoice {
 
 export default function CreateInvoice() {
   const { publicKey } = useWallet();
-  const [merchantName, setMerchantName] = useState("");
+  const [merchantName, setMerchantName] = useState(
+    () => (typeof window !== "undefined" ? localStorage.getItem("palm_pay_merchant_name") ?? "" : "")
+  );
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
@@ -22,12 +24,6 @@ export default function CreateInvoice() {
   const [createdInvoice, setCreatedInvoice] = useState<InvoiceJSON | null>(null);
   const [copied, setCopied] = useState(false);
   const [sessionInvoices, setSessionInvoices] = useState<CreatedInvoice[]>([]);
-
-  // Load merchant name from localStorage
-  useEffect(() => {
-    const saved = localStorage.getItem("palm_pay_merchant_name");
-    if (saved) setMerchantName(saved);
-  }, []);
 
   const paymentUrl =
     createdInvoice && typeof window !== "undefined"

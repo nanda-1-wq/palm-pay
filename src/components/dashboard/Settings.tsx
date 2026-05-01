@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { usePUSDBalance } from "@/hooks/usePUSDBalance";
 import { getPUSDMint, SOLANA_NETWORK } from "@/lib/constants";
+import ReservesBadge from "@/components/ReservesBadge";
 
 function CopyButton({ value, label }: { value: string; label?: string }) {
   const [copied, setCopied] = useState(false);
@@ -172,6 +173,14 @@ export default function Settings() {
             ? "Connected to Solana Mainnet"
             : "Connected to Solana Devnet — for testing only"}
         </span>
+      </div>
+
+      {/* PUSD Reserve health */}
+      <div>
+        <p className="text-xs text-[#8A8A8A] uppercase tracking-wider font-mono mb-2">
+          PUSD Reserve Health
+        </p>
+        <ReservesBadge />
       </div>
     </div>
   );

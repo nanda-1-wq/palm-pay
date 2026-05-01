@@ -3,6 +3,7 @@
 import { use, useEffect, useState } from "react";
 import type { InvoiceJSON } from "@/types/invoice";
 import CheckoutCard from "@/components/checkout/CheckoutCard";
+import TrustIndicators from "@/components/checkout/TrustIndicators";
 import { SOLANA_NETWORK } from "@/lib/constants";
 
 export default function PayPage({
@@ -157,7 +158,10 @@ export default function PayPage({
 
   return (
     <div className="min-h-screen bg-ink flex items-center justify-center p-4">
-      <CheckoutCard invoice={invoice} />
+      <div className="w-full max-w-md space-y-4">
+        <CheckoutCard invoice={invoice} />
+        <TrustIndicators />
+      </div>
     </div>
   );
 }

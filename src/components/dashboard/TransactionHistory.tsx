@@ -53,6 +53,7 @@ export default function TransactionHistory() {
   }, [publicKey]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchInvoices();
   }, [fetchInvoices]);
 

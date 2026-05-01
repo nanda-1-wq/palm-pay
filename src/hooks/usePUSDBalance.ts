@@ -12,6 +12,18 @@ interface PUSDBalance {
   refresh: () => void;
 }
 
+/**
+ * React hook that returns the PUSD token balance for the currently connected wallet.
+ *
+ * Fetches the associated token account (ATA) for the active wallet and reads its balance.
+ * Returns balance=0 if the wallet has no PUSD ATA yet.
+ * Re-fetches automatically when the connection or wallet changes.
+ *
+ * @returns { balance, loading, refresh }
+ *   - balance: PUSD balance in human-readable units (null if wallet disconnected)
+ *   - loading: true while the balance is being fetched
+ *   - refresh: manually trigger a balance re-fetch
+ */
 export function usePUSDBalance(): PUSDBalance {
   const { connection } = useConnection();
   const { publicKey } = useWallet();
@@ -40,6 +52,7 @@ export function usePUSDBalance(): PUSDBalance {
   }, [connection, publicKey]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchBalance();
   }, [fetchBalance]);
 

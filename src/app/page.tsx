@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import ReservesBadge from "@/components/ReservesBadge";
 
 const features = [
   {
@@ -160,6 +161,22 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Live PUSD Reserves */}
+      <section className="py-16 px-4 bg-ink-2">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-semibold mb-3 text-bone">
+            Live Reserve Data
+          </h2>
+          <p className="text-[#8A8A8A] mb-8 max-w-md mx-auto">
+            PUSD circulating supply, pulled directly from the Palm USD API in
+            real time. Every token is backed 1:1.
+          </p>
+          <div className="max-w-sm mx-auto">
+            <ReservesBadge />
+          </div>
+        </div>
+      </section>
+
       {/* USDC vs PUSD comparison */}
       <section className="py-24 px-4 bg-ink">
         <div className="max-w-3xl mx-auto">
@@ -205,8 +222,91 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* For Developers */}
+      <section className="py-24 px-4 bg-ink-2">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-gold/10 border border-gold/20 text-gold text-xs font-mono font-medium px-3 py-1.5 rounded-full mb-5">
+                API
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-semibold mb-4 text-bone">
+                Integrate in minutes
+              </h2>
+              <p className="text-[#8A8A8A] mb-6 leading-relaxed">
+                Create invoices and accept PUSD payments with a single API
+                call. No SDK required — just a POST request.
+              </p>
+              <ul className="space-y-3 text-sm text-[#C8C8C8]">
+                {[
+                  "REST API, no proprietary SDK",
+                  "Webhook support for payment events",
+                  "On-chain verification included",
+                  "Works with any Solana wallet",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <svg
+                      className="w-4 h-4 text-accent-bright shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2.5}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-ink border border-white/[0.06] rounded-2xl overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.06] bg-ink-2">
+                <div className="w-3 h-3 rounded-full bg-red-500/60" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
+                <div className="w-3 h-3 rounded-full bg-green-500/60" />
+                <span className="ml-2 text-xs text-[#5A5A5A] font-mono">
+                  create-invoice.sh
+                </span>
+              </div>
+              <pre className="p-5 text-xs font-mono leading-relaxed overflow-x-auto">
+                <code>
+                  <span className="text-[#5A5A5A]"># Create a payment invoice</span>
+                  {"\n"}
+                  <span className="text-[#C8C8C8]">curl -X POST https://palm-pay.vercel.app/api/invoices \</span>
+                  {"\n"}
+                  <span className="text-[#C8C8C8]">  -H </span>
+                  <span className="text-gold">&quot;Content-Type: application/json&quot;</span>
+                  <span className="text-[#C8C8C8]"> \</span>
+                  {"\n"}
+                  <span className="text-[#C8C8C8]">  -d </span>
+                  <span className="text-gold">&apos;&#123;</span>
+                  {"\n"}
+                  <span className="text-gold">    &quot;merchantWallet&quot;: &quot;YOUR_WALLET&quot;,</span>
+                  {"\n"}
+                  <span className="text-gold">    &quot;merchantName&quot;: &quot;My Shop&quot;,</span>
+                  {"\n"}
+                  <span className="text-gold">    &quot;amount&quot;: 29.99,</span>
+                  {"\n"}
+                  <span className="text-gold">    &quot;description&quot;: &quot;Order #1042&quot;</span>
+                  {"\n"}
+                  <span className="text-gold">  &#125;&apos;</span>
+                  {"\n\n"}
+                  <span className="text-[#5A5A5A]"># Returns: payment link + QR code</span>
+                  {"\n"}
+                  <span className="text-accent-bright">&#123; &quot;paymentUrl&quot;: &quot;/pay/&lt;invoiceId&gt;&quot;, ... &#125;</span>
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="py-24 px-4 bg-ink-2 text-center">
+      <section className="py-24 px-4 bg-ink text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="font-display text-3xl sm:text-4xl font-medium mb-4 text-bone">
             Ready to accept PUSD?
@@ -227,17 +327,19 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-white/[0.06] py-10 px-4 bg-ink">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#5A5A5A]">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/palm-tree.svg"
-              alt="Palm Pay"
-              width={16}
-              height={22}
-              className="opacity-50"
-            />
-            <span className="text-[#8A8A8A]">Palm Pay</span>
-            <span className="text-[#3A3A3A]">—</span>
-            <span>Powered by Solana + PUSD</span>
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-2">
+              <Image
+                src="/palm-tree.svg"
+                alt="Palm Pay"
+                width={16}
+                height={22}
+                className="opacity-50"
+              />
+              <span className="text-[#8A8A8A]">Palm Pay</span>
+            </div>
+            <span className="hidden sm:inline text-[#3A3A3A]">·</span>
+            <span>Built for Palm USD × Superteam UAE Hackathon</span>
           </div>
           <div className="flex items-center gap-6">
             <a

@@ -50,7 +50,6 @@ function checkTransfer(
   parsed: ParsedTokenTransferChecked | ParsedTokenTransfer,
   merchantATA: PublicKey,
   pusdMint: PublicKey,
-  expectedAmountLamports: bigint
 ): { match: boolean; transferAmount?: bigint; sourceAccount?: string; authority?: string } {
   if (parsed.type === 'transferChecked') {
     const { mint, destination, source, authority, tokenAmount } = parsed.info
@@ -78,6 +77,20 @@ function checkTransfer(
   return { match: false }
 }
 
+/**
+ * Verify that a Solana transaction contains a valid PUSD payment to the given merchant.
+ *
+ * Checks performed:
+ *  1. Transaction exists on-chain and has no error
+ *  2. At least one SPL token instruction transfers PUSD to the merchant's ATA
+ *  3. For `transferChecked` instructions: mint address is validated
+ *  4. Transfer amount matches expectedAmountLamports (±1 lamport rounding tolerance)
+ *
+ * @param txSignature           - Base58 Solana transaction signature
+ * @param expectedMerchant      - Base58 public key of the merchant wallet
+ * @param expectedAmountLamports - Expected payment in PUSD lamports (amount × 10^6)
+ * @returns VerifyResult with valid=true and payerWallet on success, or valid=false with error message
+ */
 export async function verifyPUSDPayment(
   txSignature: string,
   expectedMerchant: string,
@@ -130,7 +143,6 @@ export async function verifyPUSDPayment(
       parsed as ParsedTokenTransferChecked | ParsedTokenTransfer,
       merchantATA,
       pusdMint,
-      expectedAmountLamports
     )
 
     if (!result.match) continue
