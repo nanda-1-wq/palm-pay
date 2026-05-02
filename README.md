@@ -9,6 +9,8 @@
 
 Built for the **Palm USD × Superteam UAE Hackathon** (Frontier Track).
 
+**[Live Demo](https://palm-pay-weld.vercel.app)** | **[Demo Video](https://youtu.be/5Mui1qe38Hc)** | **[Pitch Deck](https://gamma.app/docs/PALM-PAY-glwi1gyre7aiklk)**
+
 ---
 
 ## Overview
@@ -317,7 +319,8 @@ Proxy for the Palm USD circulation API, cached 5 minutes server-side.
 ## Demo
 
 - **Live app:** [palm-pay-weld.vercel.app](https://palm-pay-weld.vercel.app)
-- **Demo video:** [Loom link] *(update after recording)*
+- **Demo video:** [youtu.be/5Mui1qe38Hc](https://youtu.be/5Mui1qe38Hc)
+- **Pitch deck:** [gamma.app/docs/PALM-PAY-glwi1gyre7aiklk](https://gamma.app/docs/PALM-PAY-glwi1gyre7aiklk)
 - **Dashboard:** [palm-pay-weld.vercel.app/dashboard](https://palm-pay-weld.vercel.app/dashboard)
 - **Demo store:** [palm-pay-weld.vercel.app/demo-store](https://palm-pay-weld.vercel.app/demo-store)
 
@@ -343,7 +346,7 @@ PRs welcome. Run `npm run lint` and `npm run build` before opening a pull reques
 
 ## Team
 
-Built by Nanda ([@nanda-1-wq](https://github.com/nanda-1-wq))
+Built by ADNAN ([@nanda-1-wq](https://github.com/nanda-1-wq))
 
 **Prior shipped projects:**
 - [Birdeye Token Radar](https://birdeye-token-radar.vercel.app) - Solana token intelligence dashboard (Birdeye Data BIP Competition)
